@@ -48,7 +48,7 @@ let weather = {
     fetchCoord: function (city) {
         console.log(city)
         fetch(
-            "http://api.openweathermap.org/geo/1.0/direct?q=" +
+            "https://api.openweathermap.org/geo/1.0/direct?q=" +
               city +
               "&limit=1&appid=" +
               API_KEY
@@ -128,7 +128,7 @@ function showWeatherData (data){
         if(idx == 0){
             currentTempEl.innerHTML = `
             <div class="today-weather">
-            <img src="http://openweathermap.org/img/wn//${day.weather[0].icon}@4x.png" alt="weather icon" class="w-icon">
+            <img src="https://openweathermap.org/img/wn//${day.weather[0].icon}@4x.png" alt="weather icon" class="w-icon">
             <div class="weather-desc">
             ${day.weather[0].description}
             </div>
@@ -144,7 +144,7 @@ function showWeatherData (data){
             otherDayForcast += `
             <div class="weather-forecast-item">
                 <div class="day">${window.moment(day.dt*1000).format('ddd')}</div>
-                <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
+                <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
                 <div class="weather-desc">
             ${day.weather[0].description}
             </div>
