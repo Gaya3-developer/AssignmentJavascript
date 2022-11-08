@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Variables</h1>
+
+<p>In this example, x, y, and z are variables.</p>
+
+<p id="demo"></p>
+
+
+<p>Strings are written with quotes.</p>
+<p>Numbers are written without quotes.</p>
+
+<p id="demo1"></p>
+
+
+
+<p>A variable without a value has the value of:</p>
+<p id="demo2"></p>
+<p>If you re-declare a JavaScript variable, it will not lose its value.</p>
+
+<p id="demo3"></p>
+<p>The result of adding "John" + " " + "Doe" is:</p>
+<p id="demo4"></p>
+<p>The result of adding "5" + 2 + 3 is:</p>
+<p id="demo5"></p>
+<p>The result of adding 5 + 2 + "3" is:</p>
+<p id="demo6"></p>
+<script>
+var x = 5;
+var y = 6;
+var z = x + y;
+document.getElementById("demo").innerHTML =
+"The value of z is: " + z;
+const pi = 3.14;
+let person = "John Doe";
+let answer = 'Yes I am!';
+
+document.getElementById("demo1").innerHTML =
+pi + "<br>" + person + "<br>" + answer;
+let carName;
+document.getElementById("demo2").innerHTML = carName;
+var carName1 = "Volvo";
+var carName1;
+document.getElementById("demo3").innerHTML = carName1;
+let name = "John" + " " + "Doe";
+document.getElementById("demo4").innerHTML = name;
+let sample = "5" + 2 + 3;
+document.getElementById("demo5").innerHTML = sample;
+let sample1 = 5 + 2 + "3";
+document.getElementById("demo6").innerHTML = sample1;
+</script>
+
+</body>
+</html>
+

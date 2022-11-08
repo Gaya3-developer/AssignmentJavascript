@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Arithmetic</h1>
+<h2>The + Operator</h2>
+
+<p id="demo"></p>
+<h2>The - Operator</h2>
+
+<p id="demo1"></p>
+<h2>The * Operator</h2>
+
+<p id="demo2"></p>
+<h2>The / Operator</h2>
+
+<p id="demo3"></p>
+<h2>The % Operator</h2>
+
+<p id="demo4"></p>
+<p>In this example, y is incremented before it is assigned to x (pre-incremented).</p>
+
+<p id="demo5"></p>
+<p id="demo6"></p>
+<p>In this example, y is incremented before it is assigned to x (post-incremented).</p>
+<p id="demo7"></p>
+<p>In this example, y is decremented before it is assigned to x (pre-decremented).</p>
+
+<p id="demo8"></p>
+<p id="demo9"></p>
+<p>In this example, y is decremented before it is assigned to x (post-decremented).</p>
+<p id="demo10"></p>
+<script>
+let x = 5;
+let y = 2;
+let add = x + y;
+document.getElementById("demo").innerHTML = add;
+let sub = x - y;
+document.getElementById("demo1").innerHTML = sub;
+let mul = x * y;
+document.getElementById("demo2").innerHTML = mul;
+let div = x / y;
+document.getElementById("demo3").innerHTML = div;
+let mod = x % y;
+document.getElementById("demo4").innerHTML = mod;
+let inc1 = 5;
+let incpre = ++inc1;
+let inc2 = 5;
+let incpost = inc2++;
+document.getElementById("demo5").innerHTML = `${inc1} and ${inc2}`;
+document.getElementById("demo6").innerHTML = incpre;
+document.getElementById("demo7").innerHTML = incpost;
+let dec1 = 5;
+let decpre = --dec1;
+let dec2 = 5;
+let decpost = dec2--;
+document.getElementById("demo8").innerHTML = `${dec1} and ${dec2}`;
+document.getElementById("demo9").innerHTML = decpre;
+document.getElementById("demo10").innerHTML = decpost;
+</script>
+
+</body>
+</html>
