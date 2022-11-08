@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<body onload="startTime()">
+
+<h1>JavaScript Dates</h1>
+<h2>Using new Date()</h2>
+<p>new Date() without arguments, creates a date object with the current date and time:</p>
+
+<p id="demo"></p>
+<p>Return the full year of a date object:</p>
+
+<p id="demo1"></p>
+<p>Return the number of milliseconds since midnight January 1, 1970:</p>
+
+<p id="demo2"></p>
+<p>The setFullYear() method sets the year of a date object:</p>
+
+<p id="demo3"></p>
+<p>Convert a date to a string using the UTC standard:</p>
+
+<p id="demo4"></p>
+<p>Return the weekday as a number:</p>
+
+<p id="demo5"></p>
+<p>You can use an array of names to return the weekday as a name:</p>
+
+<p id="demo6"></p>
+<h2>JavaScript Clock</h2>
+
+<div id="txt"></div>
+<script>
+const d = new Date();
+document.getElementById("demo").innerHTML = d;
+document.getElementById("demo1").innerHTML = d.getFullYear();
+document.getElementById("demo2").innerHTML = d.getTime();
+d.setFullYear(2020);
+
+document.getElementById("demo3").innerHTML = d;
+const d1 = new Date();
+document.getElementById("demo4").innerHTML = d1.toUTCString();
+document.getElementById("demo5").innerHTML = d1.getDay();
+const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+const d2 = new Date();
+let day = days[d2.getDay()];
+document.getElementById("demo6").innerHTML = day;
+function startTime() {
+  const today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s;
+  setTimeout(startTime, 1000);
+}
+
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+</script>
+
+</body>
+</html>

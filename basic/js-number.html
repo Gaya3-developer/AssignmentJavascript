@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Number Methods</h2>
+
+<p>The toExponential() method returns a string, with the number rounded and written using exponential notation.</p>
+
+<p>An optional parameter defines the number of digits behind the decimal point.</p>
+
+<p id="demo"></p>
+<p>The toFixed() method rounds a number to a given number of digits.</p>
+<p>For working with money, toFixed(2) is perfect.</p>
+
+<p id="demo1"></p>
+<p>The toPrecision() method returns a string, with a number written with a specified length:</p>
+
+<p id="demo2"></p>
+<p>The Number() method converts variables to numbers:</p>
+
+<p id="demo3"></p>
+<p>The Number() method can convert a date to a number:</p>
+
+<p id="demo4"></p>
+<p>The global JavaScript function parseInt() converts strings to numbers:</p>
+
+<p id="demo5"></p>
+<p>The parseFloat() method converts strings to numbers:</p>
+
+<p id="demo6"></p>
+<h2>The MAX_VALUE Property</h2>
+
+<p>The largest possible number in JavaScript is:</p>
+<p id="demo7"></p>
+<p>The smallest number possible in JavaScript is:</p>
+<p id="demo8"></p>
+<h2>The POSITIVE_INFINITY Property</h2>
+
+<p id="demo9"></p>
+<p>POSITIVE_INFINITY is returned on overflow:</p>
+<p id="demo10"></p>
+<h2>The NEGATIVE_INFINITY Property</h2>
+
+<p></p>
+
+<p id="demo11"></p>
+<p>NEGATIVE_INFINITY is returned on overflow:</p>
+<p id="demo12"></p>
+<h2>JavaScript Number Properties</h2>
+
+<p id="demo13"></p>
+<p>A number divided by a non-numeric string becomes NaN (Not a Number):</p>
+
+<p id="demo14"></p>
+<p>Using a Number property on a variable, or value, will return undefined:</p>
+
+<p id="demo15"></p>
+<p>The toString() method can output numbers from base 2 to 36:</p>
+
+<p id="demo16"></p>
+<p>The valueOf() method returns a number as a number:</p>
+
+<p id="demo17"></p>
+<script>
+let x = 9.656;
+document.getElementById("demo").innerHTML =
+  x.toExponential() + "<br>" + 
+  x.toExponential(2) + "<br>" + 
+  x.toExponential(4) + "<br>" + 
+  x.toExponential(6);
+
+document.getElementById("demo1").innerHTML =
+  x.toFixed(0) + "<br>" +
+  x.toFixed(2) + "<br>" +
+  x.toFixed(4) + "<br>" +
+  x.toFixed(6);
+  document.getElementById("demo2").innerHTML = 
+  x.toPrecision() + "<br>" +
+  x.toPrecision(2) + "<br>" +
+  x.toPrecision(4) + "<br>" +
+  x.toPrecision(6); 
+  document.getElementById("demo3").innerHTML = 
+  Number(true) + "<br>" +
+  Number(false) + "<br>" +
+  Number("10") + "<br>" + 
+  Number("  10") + "<br>" +
+  Number("10  ") + "<br>" +
+  Number(" 10  ") + "<br>" +
+  Number("10.33") + "<br>" + 
+  Number("10,33") + "<br>" +
+  Number("10 33") + "<br>" +
+  Number("John");
+  let d = new Date("2017-09-30");
+document.getElementById("demo4").innerHTML = Number(d); 
+document.getElementById("demo5").innerHTML = 
+  parseInt("-10") + "<br>" +
+  parseInt("-10.33") + "<br>" +
+  parseInt("10") + "<br>" +
+  parseInt("10.33") + "<br>" +
+  parseInt("10 6") + "<br>" +  
+  parseInt("10 years") + "<br>" +  
+  parseInt("years 10");
+  document.getElementById("demo6").innerHTML = 
+  parseFloat("10") + "<br>" +
+  parseFloat("10.33") + "<br>" +
+  parseFloat("10 6") + "<br>" +  
+  parseFloat("10 years") + "<br>" +
+  parseFloat("years 10");   
+  let y = Number.MAX_VALUE;
+document.getElementById("demo7").innerHTML = y;
+let z = Number.MIN_VALUE;
+document.getElementById("demo8").innerHTML = z;
+let num = Number.POSITIVE_INFINITY;
+document.getElementById("demo9").innerHTML = num;
+let num1 = 1 / 0;
+document.getElementById("demo10").innerHTML = num1;
+let negIn = Number.NEGATIVE_INFINITY;
+document.getElementById("demo11").innerHTML = negIn;
+negIn = -1 / 0;
+document.getElementById("demo12").innerHTML = negIn;
+document.getElementById("demo13").innerHTML = Number.NaN;
+document.getElementById("demo14").innerHTML = 100 / "Apple";
+ x = 6;
+document.getElementById("demo15").innerHTML = x.MAX_VALUE;
+let myNumber = 32;
+document.getElementById("demo16").innerHTML =
+"Decimal 32 = " + "<br><br>" + 
+
+"Hexatrigesimal (base 36): " + myNumber.toString(36) + "<br>" +
+"Duotrigesimal (base 32): " + myNumber.toString(32) + "<br>" +
+"Hexadecimal (base 16): " + myNumber.toString(16) + "<br>" +
+"Duodecimal (base 12): " + myNumber.toString(12) + "<br>" +
+"Decimal (base 10): " + myNumber.toString(10) + "<br>" +
+"Octal (base 8): " + myNumber.toString(8) + "<br>" +
+"Binary (base 2): " + myNumber.toString(2);
+x = 123;
+
+document.getElementById("demo17").innerHTML = 
+  x.valueOf() + "<br>" +
+  (123).valueOf() + "<br>" +
+  (100 + 23).valueOf();
+</script>
+
+</body>
+</html>

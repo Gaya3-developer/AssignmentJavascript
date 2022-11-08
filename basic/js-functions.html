@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+
+<body>
+
+<p>When you click "Try it", a function will be called.</p>
+<p>The function will display a message.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+<p>Click "Try it" to call a function with arguments</p>
+
+<button onclick="myFunctionWithArgs('Harry Potter','Wizard')">Try it</button>
+
+<p id="demo1"></p>
+<p>When you click on one of the buttons, a function will be called. The function will display the argument that is passed to it.</p>
+
+<form> 
+  <input type="button" onclick="myfunctionDisplay('Good Morning!')" value="In the Morning"> 
+  <input type="button" onclick="myfunctionDisplay('Good Evening!')" value="In the Evening"> 
+</form> 
+
+<p id="demo2"></p>
+
+<p>This example calls a function which performs a calculation and returns the result:</p>
+
+<p id="demo3"></p>
+
+<p>This example calls a function to convert from Fahrenheit to Celsius:</p>
+<p id="demo4"></p>
+<p>Accessing a function without () will return the function definition instead of the function result:</p>
+<p id="demo5"></p>
+<script>
+    function myFunction() {
+      document.getElementById("demo").innerHTML = "Hello World!";
+    }
+    function myFunctionWithArgs(name,job) {
+  document.getElementById("demo1").innerHTML = "Welcome " + name + ", the " + job + ".";
+}
+function myfunctionDisplay(txt) { 
+  document.getElementById("demo2").innerHTML = txt
+}
+var x = myFunctionCall(4, 3);
+document.getElementById("demo3").innerHTML = x;
+
+function myFunctionCall(a, b) {
+  return a * b;
+} 
+function toCelsius(f) {
+  return (5/9) * (f-32);
+}
+document.getElementById("demo4").innerHTML = toCelsius(77);
+function toCelsius(f) {
+  return (5/9) * (f-32);
+}
+document.getElementById("demo5").innerHTML = toCelsius;
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Strings</h2>
+
+<p>You can use quotes inside a string, as long as they don't match the quotes surrounding the string:</p>
+
+<p id="demo"></p>
+<p>Numbers can be written with, or without decimals:</p>
+
+<p id="demo1"></p>
+<p>Array indexes are zero-based, which means the first item is [0].</p>
+
+<p id="demo2"></p>
+<h2>JavaScript Objects</h2>
+
+<p id="demo3"></p>
+<p>The typeof operator returns the type of a variable or an expression.</p>
+
+<p id="demo4"></p>
+<p>JavaScript evaluates expressions from left to right. Different sequences can produce different results:</p>
+
+<p id="demo5"></p>
+<p>JavaScript evaluates expressions from left to right. Different sequences can produce different results:</p>
+
+<p id="demo6"></p>
+<p>The value (and the data type) of a variable with no value is <b>undefined</b>.</p>
+
+<p id="demo7"></p>
+<p>An empty string has both a legal value and a type:</p>
+
+<p id="demo8"></p>
+<script>
+let answer1 = "It's alright";
+let answer2 = "He is called 'Johnny'";
+let answer3 = 'He is called "Johnny"';
+
+document.getElementById("demo").innerHTML =
+answer1 + "<br>" + 
+answer2 + "<br>" + 
+answer3;
+let x1 = 34.00;
+let x2 = 34;
+let x3 = 3.14;
+
+document.getElementById("demo1").innerHTML =
+x1 + "<br>" + x2 + "<br>" + x3;
+const cars = ["Saab","Volvo","BMW"];
+
+document.getElementById("demo2").innerHTML = cars[0];
+const person = {
+  firstName : "John",
+  lastName  : "Doe",
+  age     : 50,
+  eyeColor  : "blue"
+};
+
+document.getElementById("demo3").innerHTML =
+person.firstName + " is " + person.age + " years old.";
+document.getElementById("demo4").innerHTML = 
+typeof "" + "<br>" +
+typeof "John" + "<br>" + 
+typeof "John Doe" + "<br>" +
+typeof 0 + "<br>" +
+typeof 314 + "<br>" +
+typeof 3.14 + "<br>" +
+typeof (3.14);
+let x = 16 + 4 + "Volvo";
+document.getElementById("demo5").innerHTML = x;
+ x = "Volvo" + 16 + 4;
+document.getElementById("demo6").innerHTML = x;
+let car;
+document.getElementById("demo7").innerHTML =
+car + "<br>" + typeof car;
+car = "";
+document.getElementById("demo8").innerHTML =
+"The value is: " +
+car + "<br>" +
+"The type is: " + typeof car;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Request JSON using the script tag</h2>
+<p>The PHP file returns a call to a function that will handle the JSON data.</p>
+<p id="demo"></p>
+<h2>Click the Button.</h2>
+<p>A script tag with a src attribute is created and placed in the document.</p>
+<p>The PHP file returns a call to a function with the JSON object as a parameter.</p>
+
+<button onclick="clickButton()">Click me!</button>
+
+<p id="demo1"></p>
+
+<p>A script tag with a src attribute is created and placed in the document.</p>
+<p>The PHP file returns a call to a function with an object as a parameter.</p>
+<p id="demo2"></p>
+
+<p>Try changing the table property from "customers" to "products".</p>
+<h2>Request With a Callback Function</h2>
+<p>The PHP file returns a call to the function you send as a callback.</p>
+<p id="demo3"></p>
+<script>
+function myFunc(myObj) {
+  document.getElementById("demo").innerHTML = myObj.name;
+  document.getElementById("demo1").innerHTML = myObj.name;
+  let txt = "";
+  for (let x in myObj) {
+    txt += myObj[x].name + "<br>";
+  }
+  document.getElementById("demo2").innerHTML = txt;
+}
+function clickButton() {
+  let s = document.createElement("script");
+  s.src = "https://www.w3schools.com/Js/demo_jsonp.php";
+  document.body.appendChild(s);
+}
+const obj = { table: "customers", limit: 10 };
+let s = document.createElement("script");
+s.src = "https://www.w3schools.com/Js/jsonp_demo_db.php?x=" + JSON.stringify(obj);
+document.body.appendChild(s);
+let newscript = document.createElement("script");
+newscript.src = "https://www.w3schools.com/Js/demo_jsonp2.php?callback=myDisplayFunction";
+document.body.appendChild(newscript);
+
+function myDisplayFunction(myObj) {
+  document.getElementById("demo3").innerHTML = myObj.name;
+}
+
+</script>
+
+<!--<script src="https://www.w3schools.com/Js/demo_jsonp.php"></script>-->
+
+</body>
+</html>

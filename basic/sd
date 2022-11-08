@@ -1,0 +1,8 @@
+document.getElementById("demo").innerHTML =
+"y1: " + typeof y1 + "<br>" +
+"y2: " + typeof y2 + "<br>" +
+"y3: " + typeof y3 + "<br>" +
+"y4: " + typeof y4 + "<br>" +
+"y5: " + typeof y5 + "<br>" +
+"y6: " + typeof y6 + "<br>" +
+"y7: " + typeof y7 + "<br>";

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Arrays</h2>
+
+<p id="demo"></p>
+<p id="demo1"></p>
+<p>JavaScript array elements are accessed using numeric indexes (starting from 0).</p>
+
+<p id="demo2"></p>
+<p>Array elements are accessed using their index number:</p>
+
+<p id="demo3"></p>
+<p id="demo4"></p>
+<p>The length property returns the length of an array.</p>
+
+<p id="demo5"></p>
+<p>The best way to loop through an array is using a standard for loop:</p>
+
+<p id="demo6"></p>
+<p>The length property provides an easy way to append new elements to an array without using the push() method.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo7"></p>
+<p>Adding elements with high indexes can create undefined "holes" in an array.</p>
+
+<p id="demo8"></p>
+<p>The instanceof operator returns true when used on an array:</p>
+
+<p id="demo9"></p>
+<h2>The isArray() Method</h2>
+
+<p id="demo10"></p>
+<script>
+const cars = ["Saab", "Volvo", "BMW"];
+document.getElementById("demo").innerHTML = cars;
+const cars1 = [
+  "Saab",
+  "Volvo",
+  "BMW"
+];
+document.getElementById("demo1").innerHTML = cars1;
+document.getElementById("demo2").innerHTML = cars[0];
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+document.getElementById("demo3").innerHTML = fruits;
+fruits[0] = "Kiwi";
+document.getElementById("demo4").innerHTML = fruits;
+document.getElementById("demo5").innerHTML = fruits.length;
+let fLen = fruits.length;
+
+let text = "<ul>";
+for (let i = 0; i < fLen; i++) {
+  text += "<li>" + fruits[i] + "</li>";
+}
+text += "</ul>";
+
+document.getElementById("demo6").innerHTML = text;
+document.getElementById("demo7").innerHTML = fruits;
+
+function myFunction() {
+  fruits[fruits.length] = "Lemon";
+  document.getElementById("demo7").innerHTML = fruits;
+}
+const fruitsNew = ["Banana", "Orange", "Apple"];
+fruitsNew[6] = "Lemon";
+
+ fLen = fruitsNew.length;
+ text = "";
+for (i = 0; i < fLen; i++) {
+  text += fruitsNew[i] + "<br>";
+}
+
+document.getElementById("demo8").innerHTML = text;
+document.getElementById("demo9").innerHTML = fruits instanceof Array;
+document.getElementById("demo10").innerHTML = Array.isArray(fruits);
+</script>
+
+</body>
+</html>
+
