@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Table App</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 5px;
+      }
+      th {
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h2>Movies Table</h2>
+      <p>Key in your input to filter the table:</p>
+
+      <input
+        type="text"
+        id="myinput"
+        placeholder="Search..."
+        title="Type in something"
+      />
+
+      <p>Click on the header of a column to sort the table:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <span id="title" class="w3-button table-column"
+                >Title <i class="caret"></i
+              ></span>
+            </th>
+            <th>
+              <span id="imdbRating" class="w3-button table-column"
+                >IMDB rating <i class="caret"></i
+              ></span>
+            </th>
+            <th>
+              <span id="tomatoesRating" class="w3-button table-column"
+                >Rotten Tomatoes rating <i class="caret"></i
+              ></span>
+            </th>
+            <th>
+              <span id="imdbTomatoescombinedRating" class="w3-button table-column"
+                >IMDB/Tomato Combined rating. <i class="caret"></i
+              ></span>
+            </th>
+            <th>
+              <span id="view" class="w3-button table-column"
+                >View <i class="caret"></i
+              ></span>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="mytable"></tbody>
+      </table>
+    </div>
+
+    <script>
+      var table = document.getElementById("mytable");
+      var input = document.getElementById("myinput");
+      var caretUpClassName = "fa fa-caret-up";
+      var caretDownClassName = "fa fa-caret-down";
+      //get json data
+      async function getMovies() {
+        let url = "./movies.json";
+        try {
+          let res = await fetch(url);
+          return await res.json();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      async function populateTable() {
+        let tableData = await getMovies();
+        let combinedrating = 0;
+        let html = "";
+        table.innerHTML = "";
+        for (let data in tableData) {
+          let row = table.insertRow(-1);
+          let title = row.insertCell(0);
+          title.innerHTML = tableData[data].title;
+
+          let imdbRating = row.insertCell(1);
+          imdbRating.innerHTML = tableData[data].imdb.rating;
+
+          let tomatoesRating = row.insertCell(2);
+          tomatoesRating.innerHTML = tableData[data].tomatoes.viewer.rating;
+          combinedrating =
+            Math.floor(
+              tableData[data].imdb.rating +
+                tableData[data].tomatoes.viewer.rating
+            ) / 2;
+        
+          let imdbTomatoescombinedRating = row.insertCell(3);
+          imdbTomatoescombinedRating.innerHTML = combinedrating;
+
+          let view = row.insertCell(4);
+          view.innerHTML = tableData[data].plot;
+        }
+
+        filterTable();
+      }
+
+      populateTable();
+
+      const sort_by = (field, reverse, primer) => {
+        const key = primer
+          ? function (x) {
+              return primer(x[field]);
+            }
+          : function (x) {
+              return x[field];
+            };
+
+        reverse = !reverse ? 1 : -1;
+
+        return function (a, b) {
+          return (a = key(a)), (b = key(b)), reverse * ((a > b) - (b > a));
+        };
+      };
+
+      function clearArrow() {
+        let carets = document.getElementsByClassName("caret");
+        for (let caret of carets) {
+          caret.className = "caret";
+        }
+      }
+
+      function toggleArrow(event) {
+        let element = event.target;
+        let caret, field, reverse;
+        if (element.tagName === "SPAN") {
+          caret = element.getElementsByClassName("caret")[0];
+          field = element.id;
+        } else {
+          caret = element;
+          field = element.parentElement.id;
+        }
+
+        let iconClassName = caret.className;
+        clearArrow();
+        if (iconClassName.includes(caretUpClassName)) {
+          caret.className = `caret ${caretDownClassName}`;
+          reverse = false;
+        } else {
+          reverse = true;
+          caret.className = `caret ${caretUpClassName}`;
+        }
+
+        tableData.sort(sort_by(field, reverse));
+        populateTable();
+      }
+
+      function filterTable() {
+        let filter = input.value.toUpperCase();
+        rows = table.getElementsByTagName("TR");
+        let flag = false;
+
+        for (let row of rows) {
+          let cells = row.getElementsByTagName("TD");
+          for (let cell of cells) {
+            if (cell.textContent.toUpperCase().indexOf(filter) > -1) {
+              if (filter) {
+                cell.style.backgroundColor = "yellow";
+              } else {
+                cell.style.backgroundColor = "";
+              }
+
+              flag = true;
+            } else {
+              cell.style.backgroundColor = "";
+            }
+          }
+
+          if (flag) {
+            row.style.display = "";
+          } else {
+            row.style.display = "none";
+          }
+
+          flag = false;
+        }
+      }
+
+      let tableColumns = document.getElementsByClassName("table-column");
+
+      for (let column of tableColumns) {
+        column.addEventListener("click", function (event) {
+          toggleArrow(event);
+        });
+      }
+
+      input.addEventListener("keyup", function (event) {
+        filterTable();
+      });
+    </script>
+  </body>
+</html>
