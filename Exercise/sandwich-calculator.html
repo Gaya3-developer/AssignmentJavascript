@@ -1,0 +1,72 @@
+<!--
+Exercise - A Sandwich Calculator
+Write a function called sandwich calculator. This should accept one value: bread
+The function should return the total number of possible sandwiches based on the amount of bread available. I need 2 breads to make one sandwich, so if there are 10 breads, it should return 5. Test your function with console.log.
+Extend your function so it accepts two values, bread and cheese.
+It takes two breads and one cheese to make a sandwich. The function should return the total number of possible sandwiches, so if there are breads, but only 1 cheese, it should return 1.
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        function sandwichCalulator(bread){
+            var sandwich = Math.trunc(bread/2);
+            
+            if(sandwich > 0){
+                return sandwich;
+            }
+            else {
+                return "bread not sufficent to make sandwich"
+            }
+console.log(sandwich)
+
+        }
+        document.write("<b>With only bread</b>")
+        document.write("with 0 breads: " + sandwichCalulator(0)+"<br/>") 
+        document.write("with 1 breads: " + sandwichCalulator(1)+"<br/>") 
+        document.write("with 2 breads: " + sandwichCalulator(2)+"<br/>") 
+        document.write("with 5 breads: "+sandwichCalulator(5)+"<br/>");
+       document.write("with 10 breads: " + sandwichCalulator(10)+"<br/>") 
+       document.write("with 13 breads: "+sandwichCalulator(13)+"<br/>");
+        document.write("with 100 breads: "+sandwichCalulator(100)+"<br/>");
+        document.write("<b>With bread and cheese</b>")
+     
+        function sandwichCalulator1(bread,cheese){
+            var breadCount = Math.trunc(bread/2);
+            if(breadCount > 0 && cheese > 0){
+                var sandwich;
+             if(breadCount < cheese){
+                sandwich = breadCount;
+             }
+             else{
+                sandwich = cheese;
+             }
+               
+            }
+else{
+ sandwich = "Must have atleast two bread and one cheese to make the sandwich" 
+}
+return sandwich;
+
+        }
+      document.write("with 1 bread and 0 cheese: "+(sandwichCalulator1(1,0))+"<br/>");
+      document.write(("with 0 bread and 0 cheese: "+sandwichCalulator1(0,0))+"<br/>");
+      document.write(("with 10 bread and 0 cheese: "+sandwichCalulator1(10,0))+"<br/>");
+      document.write(("with 10 bread and 1 cheese: "+sandwichCalulator1(10,1))+"<br/>");
+      document.write(("with 3 bread and 3 cheese: "+sandwichCalulator1(3,3))+"<br/>");
+      document.write(("with 5 bread and 3 cheese: "+sandwichCalulator1(5,3))+"<br/>");
+      document.write(("with 6 bread and 3 cheese: "+sandwichCalulator1(6,3))+"<br/>");
+      document.write(("with 7 bread and 3 cheese: "+sandwichCalulator1(7,3))+"<br/>");
+      document.write(("with 8 bread and 3 cheese: "+sandwichCalulator1(8,3))+"<br/>");
+      document.write(("with 8 bread and 4 cheese: "+sandwichCalulator1(8,4))+"<br/>");
+    </script>
+</body>
+</html>

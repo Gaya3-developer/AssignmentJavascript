@@ -1,0 +1,42 @@
+<!--
+    Exercise - Array Strings
+Write a function that takes a list of strings an prints them, one per line, in a rectangular frame. For example the list ["Hello", "World", "in", "a", "frame"] gets printed as:
+*********
+* Hello *
+* World *
+* in    *
+* a     *
+* frame *
+*********
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <script>
+    var exampleStr =  ["Hello", "World", "in", "a", "frame"]
+ /* document.write("**********<br/>")
+    for(i in exampleStr){
+        document.write(`* ${exampleStr[i]} *<br/>`)
+    }
+    document.write("**********")*/
+    function makeStarBox(arr){
+  const longest = arr.reduce((a, b) => a.length <= b.length ? b : a);
+  const box_width = longest.length + 4;
+  
+  console.log("*".repeat(box_width));
+
+  arr.map(str => console.log("* " + str + " ".repeat(box_width - (str.length + 4)) + " *"));
+
+  console.log("*".repeat(box_width));
+}
+makeStarBox(exampleStr)
+  </script>  
+</body>
+</html>

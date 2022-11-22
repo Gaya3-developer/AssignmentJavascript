@@ -1,0 +1,31 @@
+<!--Exercise - Conditional logic
+Create a little program that tells you if it's the morning, afternoon or night.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo1" style="text-align: center; color:orange; font-size: 20px;"></p>
+    <script type="text/javascript">
+      
+        var day = new Date();
+        var hr = day.getHours();
+        var str="";
+        if (hr >= 0 && hr < 12) {
+          str = "Good Morning!"
+        } else if (hr == 12) {
+            str = "Good Noon!"
+        } else if (hr >= 12 && hr <= 17) {
+            str = "Good Afternoon!"
+        } else {
+            str = "Good Evening!"
+        }
+        document.getElementById("demo1").innerHTML = str;
+    </script>
+</body>
+</html>

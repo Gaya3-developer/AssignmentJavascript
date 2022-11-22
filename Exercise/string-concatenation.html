@@ -1,0 +1,36 @@
+<!--
+Exercise - String Concatenation
+Create a variable called greeting. Store the value 'hello' in it.
+Create a variable called name. Store the value 'world' in it.
+Use your variables to alert "hello world".
+Use a couple of regex to change the output to "he110 w0r1d"
+Use a couple more functions to reverse the result.
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p><b>2. Getting Hell0 w0rld</b></p>
+    <p id="demo1"></p>
+    <p><b>3. Reverse Hell0 w0rld</b></p>
+    <p id="demo2"></p>
+    <script>
+      var greeting = "hello";
+      var name = "world";
+      var finalSting = greeting +" "+ name;
+      alert(finalSting)
+      var newGreeting = finalSting.replace(/o/g, '0')
+      document.getElementById("demo1").innerHTML = newGreeting;
+     // console.log(newGreeting);
+      var splitString = newGreeting.split("")
+      var reverseArray = splitString.reverse();
+      var joinArray = reverseArray.join(""); 
+      document.getElementById("demo2").innerHTML = joinArray;
+    </script>
+  </body>
+</html>

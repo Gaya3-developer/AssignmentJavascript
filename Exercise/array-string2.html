@@ -1,0 +1,32 @@
+<!--
+    Exercise - Array Strings
+Write a function that translates a text to Pig Latin and back. English is translated to Pig Latin by taking the first letter of every word, moving it to the end of the word and adding ‘ay’. “The quick brown fox” becomes “Hetay uickqay rownbay oxfay”.
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str ="The quick brown fox";
+        var array = str.split(" ");
+       
+        let transformedArr = array.map(function(item) {
+  let firstLetter = item.charAt(0).toLowerCase(); 
+  let firstWord = item.slice(1);
+  
+  let newItem = firstWord.toLowerCase() + firstLetter + "ay";
+  return newItem;
+});
+
+let finalSting = transformedArr.join(" ")
+document.write(`original string: <br/>"${str}"<br/>`)
+document.write(`<br/>transformed string with Pig Latin and back: <br/>"${finalSting.charAt(0).toUpperCase() + finalSting.slice(1)}"`);
+    </script>
+</body>
+</html>

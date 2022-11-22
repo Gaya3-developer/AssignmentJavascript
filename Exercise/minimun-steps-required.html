@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function logic(item1, item2) {
+        const arrLength = item1.length;
+        const min = Math.min(...item1);
+        let result;
+
+        for (let temp = min; temp >= 0; temp--) {
+          result = 0;
+
+          for (let i = 0; i < arrLength; i++) {
+            if ((item1[i] - temp) % item2[i] == 0) {
+              result = result + (item1[i] - temp) / item2[i];
+            } else {
+              result = -1;
+              break;
+            }
+          }
+
+          if (result > -1) return result;
+        }
+        return result;
+      }
+      function stepsRequired(...arr) {
+        for (let [val1, val2, val3] of arr) {
+          var ele1 = val1;
+          var ele2 = val2;
+          var ele3 = val3;
+        }
+document.write(`first line : `+ele1)
+document.write(`<br/>second line : `+ele2)
+document.write(`<br/>third line : `+ele3)
+        let result;
+        result = logic(ele1, ele2);
+        result += logic(ele2, ele3);
+        return result;
+      }
+
+      var arr1 = [[5], [5, 7, 10, 5, 15], [2, 2, 1, 3, 5]];
+      var arr2 = [[2], [5, 6], [4, 3]];
+
+      document.write(
+        `<br/>minimum number of steps that are required to make all 's equal in array ` +
+          stepsRequired(arr1)+"<br/>"
+      );
+      document.write(
+        `<br/>minimum number of steps that are required to make all 's equal in array ` +
+          stepsRequired(arr2)
+      );
+    </script>
+  </body>
+</html>

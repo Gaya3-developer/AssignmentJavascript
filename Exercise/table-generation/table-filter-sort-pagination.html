@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Table App</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="./table.css" />
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 5px;
+      }
+      th {
+        text-align: left;
+      }
+      body {
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+      }
+      span {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      img {
+        width: 15px;
+        height: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h2>Movies Table</h2>
+      <p>Key in your input to filter the table:</p>
+
+      <input
+        type="text"
+        id="myinput"
+        placeholder="Search..."
+        title="Type in something"
+      />
+
+      <p>Click on the header of a column to sort the table:</p>
+
+      <table id="moviesTable">
+        <thead>
+          <tr>
+            <th>
+              <span id="title"
+                >Title
+                <img
+                  src="./up-and-down-arrows.svg"
+                  alt="no element found"
+                  onclick="sortTable(0)"
+                />
+              </span>
+            </th>
+            <th>
+              <span id="imdbRating"
+                >IMDB rating
+                <img
+                  src="./up-and-down-arrows.svg"
+                  alt="no element found"
+                  onclick="sortTable(1)"
+              /></span>
+            </th>
+            <th>
+              <span id="tomatoesRating"
+                >Rotten Tomatoes rating
+                <img
+                  src="./up-and-down-arrows.svg"
+                  alt="no element found"
+                  onclick="sortTable(2)"
+              /></span>
+            </th>
+            <th>
+              <span id="imdbTomatoescombinedRating"
+                >IMDB/Tomato Combined rating.<img
+                  src="./up-and-down-arrows.svg"
+                  alt="no element found"
+                  onclick="sortTable(3)"
+              /></span>
+            </th>
+            <th>
+              <span id="view"
+                >View
+                <img
+                  src="./up-and-down-arrows.svg"
+                  alt="no element found"
+                  onclick="sortTable(4)"
+              /></span>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="tableContent"></tbody>
+      </table>
+
+      <div class="content_detail__pagination cdp" id="cdp" actpage="1">
+     
+      </div>
+    </div>
+
+    <script type="module">
+      import tableData from "./movies.json" assert { type: "json" };
+
+      var moviesTable = document.getElementById("moviesTable");
+      var tableContent = document.getElementById("tableContent");
+      var input = document.getElementById("myinput");
+      var caretUpClassName = "fa fa-caret-up";
+      var caretDownClassName = "fa fa-caret-down";
+      //get json data
+      /*   async function getMovies() {
+        let url = "./movies.json";
+        try {
+          let res = await fetch(url);
+          return await res.json();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      var totalTableRow;*/
+      //rendering table
+      function populateTable(tableData) {
+        // let tableData = await getMovies();
+        let combinedrating = 0;
+        let html = "";
+        tableContent.innerHTML = "";
+        for (let data in tableData) {
+          let row = tableContent.insertRow(-1);
+          let title = row.insertCell(0);
+          title.innerHTML = tableData[data].title;
+
+          let imdbRating = row.insertCell(1);
+          imdbRating.innerHTML = tableData[data].imdb.rating;
+
+          let tomatoesRating = row.insertCell(2);
+          tomatoesRating.innerHTML = tableData[data].tomatoes.viewer.rating;
+          combinedrating =
+            Math.floor(
+              tableData[data].imdb.rating +
+                tableData[data].tomatoes.viewer.rating
+            ) / 2;
+
+          let imdbTomatoescombinedRating = row.insertCell(3);
+          imdbTomatoescombinedRating.innerHTML = combinedrating;
+
+          let view = row.insertCell(4);
+          view.innerHTML = tableData[data].plot;
+        }
+
+       var tableRow =  filterTable();
+       
+       createPagination(tableRow)
+      }
+
+      populateTable(tableData);
+
+      //pagination
+      var li = document.getElementById("tableContent");
+      var paginationNumber = document.getElementById("cdp");
+      var display = 5;
+      var count = 1;
+      var elem = document.getElementById("cdp");
+var actpage = elem.getAttribute("actpage");
+
+var paginationPage = parseInt(actpage, 10);
+function createPagination(rowCount){
+
+  var paginationNumber = document.getElementById("cdp");
+  var buttonCount = Math.ceil(rowCount/ 5);
+
+  var button = document.createElement("button");
+button.className = "cdp_i";
+button.innerHTML = "prev";
+paginationNumber.appendChild(button);
+
+for (let i = 1; i <= buttonCount; i++) {
+  var button = document.createElement("button");
+  button.className = "cdp_i";
+  button.innerHTML = i;
+  paginationNumber.appendChild(button);
+}
+var button = document.createElement("button");
+button.className = "cdp_i";
+button.innerHTML = "next";
+paginationNumber.appendChild(button);
+}
+     
+  
+
+      function main(pageNum) {
+        var li = document.getElementById("tableContent");
+      
+        var nextPage = 5 * pageNum;
+        var prevPage = 5 * (pageNum - 1);
+        for (var i = 0, row; (row = li.rows[i]); i++) {
+          li.rows[i].style.display = "none";
+          if (i < nextPage && i >= prevPage) {
+            li.rows[i].style.display = "table-row";
+          }
+        }
+      }
+
+     
+
+      var buttnNumbers = paginationNumber.getElementsByTagName("button");
+    //  console.log(buttnNumbers)
+      for (let i = 0; i < buttnNumbers.length; i++) {
+        buttnNumbers[i].addEventListener("click", buttonClick);
+      }
+
+      function buttonClick() {
+        var go = this.innerHTML;
+        // console.log(go)
+        if (go === "next") {
+          paginationPage++;
+
+          count = paginationPage;
+        } else if (go === "prev") {
+          paginationPage--;
+          count = paginationPage;
+        } else {
+          paginationPage = parseInt(go, 10);
+          count = go;
+        }
+        elem.setAttribute("actpage", paginationPage);
+        main(count);
+      }
+
+
+      function filterTable() {
+     
+        let filter = input.value.toUpperCase();
+        let rows = tableContent.getElementsByTagName("TR");
+        let flag = false;
+let count = 0;
+        for (let row of rows) {
+          let cells = row.getElementsByTagName("TD");
+          for (let cell of cells) {
+            if (cell.textContent.toUpperCase().indexOf(filter) > -1) {
+              if (filter) {
+                cell.style.backgroundColor = "yellow";
+              } else {
+                cell.style.backgroundColor = "";
+              }
+
+              flag = true;
+            } else {
+              cell.style.backgroundColor = "";
+            }
+          }
+
+          if (flag) {
+      count +=1;
+     // console.log(count)
+     main(1)
+          //  row.style.display = "";
+       
+          } else {
+            row.style.display = "none";
+          }
+
+          flag = false;
+        }
+       return count;
+      }
+
+
+      input.addEventListener("keyup", function (event) {
+        var tableRow = filterTable();
+        //createPagination(tableRow)
+      });
+    </script>
+    <script>
+
+      //sorting
+      function sortTable(n) {
+        var table,
+          rows,
+          switching,
+          i,
+          x,
+          y,
+          shouldSwitch,
+          dir,
+          switchcount = 0;
+        table = document.getElementById("moviesTable");
+        switching = true;
+
+        dir = "asc";
+
+        while (switching) {
+          switching = false;
+          rows = table.rows;
+
+          for (i = 1; i < rows.length - 1; i++) {
+            shouldSwitch = false;
+
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+
+            if (dir == "asc") {
+              if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+              }
+            } else if (dir == "desc") {
+              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+              }
+            }
+          }
+          if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+
+            switchcount++;
+          } else {
+            if (switchcount == 0 && dir == "asc") {
+              dir = "desc";
+              switching = true;
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

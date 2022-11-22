@@ -1,0 +1,27 @@
+<!--Exercise - Pizza
+Create an array of pizza toppings, like this:
+var toppings = ['Cheese', 'Ham', 'Bits', 'Tomatoes'];
+Now write a function that we can call like this:
+makePizza(toppings);
+This function should return a string of the form:
+"A tasty pizza with Cheese and Ham and Bits and Tomatoes"
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var toppings = ["Cheese", "Ham", "Bits", "Tomatoes"];
+      function makePizza(toppings) {
+        var str = `"A tasty pizza with ${toppings.join(" and ")} "`;
+        return str;
+      }
+      document.write("final string is: " + makePizza(toppings));
+    </script>
+  </body>
+</html>

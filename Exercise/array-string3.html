@@ -1,0 +1,48 @@
+<!--Exercise - Array Strings
+Given an array with numbers, write a program 
+that efficiently answers queries of the form: 
+“Which is the nearest larger value for the number at position i?”,
+ where distance is the difference in array indices. For example in the array [1,4,3,2,5,7], 
+ the nearest larger value for 4 is 5. -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ </head>
+ <body>
+    <script>
+const arr =[10,4,3,2,5,70];
+
+function getNearestLarge(arr, item) {
+    var result;
+ let index = arr.indexOf(item)
+  if(index >= 0)  {
+
+  const newArr = arr.slice(index);
+  result = newArr.find(value => value > item); 
+  }
+    else{
+       // result = arr.find(value => value > item); 
+       result = "element not found"
+    }
+   if(result == undefined){
+    result = "No match found"
+   }
+
+   document.write(`the nearest largest value of ${item} in a given array [${arr}] is : ${result}<br/>`)
+}
+getNearestLarge(arr,50);
+getNearestLarge(arr,9);
+getNearestLarge(arr,40);
+getNearestLarge(arr,4);
+getNearestLarge(arr,10);
+getNearestLarge(arr,3);
+getNearestLarge(arr,2);
+getNearestLarge(arr,5);
+getNearestLarge(arr,70);
+    </script>
+ </body>
+ </html>
