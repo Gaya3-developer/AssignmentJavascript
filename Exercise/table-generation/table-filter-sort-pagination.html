@@ -107,7 +107,7 @@
         <tbody id="tableContent"></tbody>
       </table>
 
-      <div class="content_detail__pagination cdp" id="cdp" actpage="1">
+      <div class="cdp" id="cdp" actpage="1">
      
       </div>
     </div>
@@ -163,6 +163,9 @@
        var tableRow =  filterTable();
        
        createPagination(tableRow)
+  
+
+
       }
 
       populateTable(tableData);
@@ -250,6 +253,7 @@ let count = 0;
           let cells = row.getElementsByTagName("TD");
           for (let cell of cells) {
             if (cell.textContent.toUpperCase().indexOf(filter) > -1) {
+              console.log(filter)
               if (filter) {
                 cell.style.backgroundColor = "yellow";
               } else {
@@ -265,15 +269,39 @@ let count = 0;
           if (flag) {
       count +=1;
      // console.log(count)
-     main(1)
-          //  row.style.display = "";
+   //  row.style.display = "";
+     row.setAttribute("class", "yes");
+   
+          //  
        
           } else {
-            row.style.display = "none";
+           // row.style.display = "none";
+           row.setAttribute("class", "no");
           }
 
           flag = false;
         }
+   
+        let tRow = tableContent.querySelectorAll("[class]");
+console.log(tRow)
+
+   var elem = Array.from(tRow).sort(sortMe);
+console.log(elem)
+ //  tableContent.insertAdjacentHTML("beforeend",elem);
+ 
+console.log(elem)
+elem.forEach(el => {
+  console.log(el)
+  tableContent.appendChild(el);
+});
+main(1)
+ function sortMe(a, b) {
+
+        return a.className > b.className ? -1 : 1; // This is the added code
+  }
+
+
+
        return count;
       }
 
