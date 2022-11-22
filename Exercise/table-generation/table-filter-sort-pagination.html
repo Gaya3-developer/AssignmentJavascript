@@ -107,9 +107,7 @@
         <tbody id="tableContent"></tbody>
       </table>
 
-      <div class="cdp" id="cdp" actpage="1">
-     
-      </div>
+      <div class="cdp" id="cdp" actpage="1"></div>
     </div>
 
     <script type="module">
@@ -118,22 +116,9 @@
       var moviesTable = document.getElementById("moviesTable");
       var tableContent = document.getElementById("tableContent");
       var input = document.getElementById("myinput");
-      var caretUpClassName = "fa fa-caret-up";
-      var caretDownClassName = "fa fa-caret-down";
-      //get json data
-      /*   async function getMovies() {
-        let url = "./movies.json";
-        try {
-          let res = await fetch(url);
-          return await res.json();
-        } catch (error) {
-          console.log(error);
-        }
-      }
-      var totalTableRow;*/
+
       //rendering table
       function populateTable(tableData) {
-        // let tableData = await getMovies();
         let combinedrating = 0;
         let html = "";
         tableContent.innerHTML = "";
@@ -160,73 +145,61 @@
           view.innerHTML = tableData[data].plot;
         }
 
-       var tableRow =  filterTable();
-       
-       createPagination(tableRow)
-  
-
-
+        filterTable();
+        createPagination();
       }
 
       populateTable(tableData);
 
       //pagination
-      var li = document.getElementById("tableContent");
+
       var paginationNumber = document.getElementById("cdp");
       var display = 5;
       var count = 1;
-      var elem = document.getElementById("cdp");
-var actpage = elem.getAttribute("actpage");
+      var actpage = paginationNumber.getAttribute("actpage");
 
-var paginationPage = parseInt(actpage, 10);
-function createPagination(rowCount){
+      var paginationPage = parseInt(actpage, 10);
+      function createPagination() {
+        var paginationNumber = document.getElementById("cdp");
+        var buttonCount = Math.ceil(tableContent.rows.length / 5);
 
-  var paginationNumber = document.getElementById("cdp");
-  var buttonCount = Math.ceil(rowCount/ 5);
+        var button = document.createElement("button");
+        button.className = "cdp_i";
+        button.innerHTML = "prev";
+        paginationNumber.appendChild(button);
 
-  var button = document.createElement("button");
-button.className = "cdp_i";
-button.innerHTML = "prev";
-paginationNumber.appendChild(button);
-
-for (let i = 1; i <= buttonCount; i++) {
-  var button = document.createElement("button");
-  button.className = "cdp_i";
-  button.innerHTML = i;
-  paginationNumber.appendChild(button);
-}
-var button = document.createElement("button");
-button.className = "cdp_i";
-button.innerHTML = "next";
-paginationNumber.appendChild(button);
-}
-     
-  
+        for (let i = 1; i <= buttonCount; i++) {
+          var button = document.createElement("button");
+          button.className = "cdp_i";
+          button.innerHTML = i;
+          paginationNumber.appendChild(button);
+        }
+        var button = document.createElement("button");
+        button.className = "cdp_i";
+        button.innerHTML = "next";
+        paginationNumber.appendChild(button);
+      }
 
       function main(pageNum) {
-        var li = document.getElementById("tableContent");
-      
+       // var li = document.getElementById("tableContent");
+
         var nextPage = 5 * pageNum;
         var prevPage = 5 * (pageNum - 1);
-        for (var i = 0, row; (row = li.rows[i]); i++) {
-          li.rows[i].style.display = "none";
+        for (var i = 0, row; (row = tableContent.rows[i]); i++) {
+          tableContent.rows[i].style.display = "none";
           if (i < nextPage && i >= prevPage) {
-            li.rows[i].style.display = "table-row";
+            tableContent.rows[i].style.display = "table-row";
           }
         }
       }
 
-     
-
       var buttnNumbers = paginationNumber.getElementsByTagName("button");
-    //  console.log(buttnNumbers)
       for (let i = 0; i < buttnNumbers.length; i++) {
         buttnNumbers[i].addEventListener("click", buttonClick);
       }
 
       function buttonClick() {
         var go = this.innerHTML;
-        // console.log(go)
         if (go === "next") {
           paginationPage++;
 
@@ -238,22 +211,20 @@ paginationNumber.appendChild(button);
           paginationPage = parseInt(go, 10);
           count = go;
         }
-        elem.setAttribute("actpage", paginationPage);
+        paginationNumber.setAttribute("actpage", paginationPage);
         main(count);
       }
 
-
       function filterTable() {
-     
         let filter = input.value.toUpperCase();
         let rows = tableContent.getElementsByTagName("TR");
         let flag = false;
-let count = 0;
+        let count = 0;
         for (let row of rows) {
           let cells = row.getElementsByTagName("TD");
           for (let cell of cells) {
             if (cell.textContent.toUpperCase().indexOf(filter) > -1) {
-              console.log(filter)
+              console.log(filter);
               if (filter) {
                 cell.style.backgroundColor = "yellow";
               } else {
@@ -267,52 +238,34 @@ let count = 0;
           }
 
           if (flag) {
-      count +=1;
-     // console.log(count)
-   //  row.style.display = "";
-     row.setAttribute("class", "yes");
-   
-          //  
-       
+            row.setAttribute("class", "yes");
           } else {
-           // row.style.display = "none";
-           row.setAttribute("class", "no");
+            row.setAttribute("class", "no");
           }
 
           flag = false;
         }
-   
+
         let tRow = tableContent.querySelectorAll("[class]");
-console.log(tRow)
-
-   var elem = Array.from(tRow).sort(sortMe);
-console.log(elem)
- //  tableContent.insertAdjacentHTML("beforeend",elem);
- 
-console.log(elem)
-elem.forEach(el => {
-  console.log(el)
-  tableContent.appendChild(el);
-});
-main(1)
- function sortMe(a, b) {
-
-        return a.className > b.className ? -1 : 1; // This is the added code
-  }
-
-
-
-       return count;
+        var elem = Array.from(tRow).sort(sortMe);
+        elem.forEach((el) => {
+          tableContent.appendChild(el);
+        });
+        var paginationReset = document.getElementById("cdp");
+        paginationReset.setAttribute("actpage", 1);
+        main(1);
+      
+        function sortMe(a, b) {
+          return a.className > b.className ? -1 : 1; // This is the added code
+        }
       }
 
-
       input.addEventListener("keyup", function (event) {
-        var tableRow = filterTable();
+       filterTable();
         //createPagination(tableRow)
       });
     </script>
     <script>
-
       //sorting
       function sortTable(n) {
         var table,
