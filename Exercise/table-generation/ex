@@ -145,9 +145,8 @@
           view.innerHTML = tableData[data].plot;
         }
 
-        var paginationCount = filterTable();
-        
-        createPagination(paginationCount);
+       var PaginationCount = filterTable();
+        createPagination(PaginationCount);
       }
 
       populateTable(tableData);
@@ -160,14 +159,23 @@
       var actpage = paginationNumber.getAttribute("actpage");
 
       var paginationPage = parseInt(actpage, 10);
-      function createPagination(paginationCount) {
+      function removePagination(){
+      /*  var paginationNumber = document.getElementById("cdp");
+        paginationNumber.removeChild("button");
+        console.log("hi")*/
+        document.querySelectorAll(".cdp_i").forEach(el => el.remove());
+        console.log("hi")
+      }
+      function createPagination(PaginationCount) {
+       
         var paginationNumber = document.getElementById("cdp");
-        var buttonCount = Math.ceil(paginationCount / 5);
-if(paginationCount != 0){
-  //document.querySelectorAll(".no-data-found").forEach(el => el.remove());
- 
+        var buttonCount = Math.ceil(PaginationCount / 5);
+     
 
-  var button = document.createElement("button");
+   
+
+     
+        var button = document.createElement("button");
         button.className = "cdp_i";
         button.innerHTML = "prev";
         paginationNumber.appendChild(button);
@@ -182,21 +190,6 @@ if(paginationCount != 0){
         button.className = "cdp_i";
         button.innerHTML = "next";
         paginationNumber.appendChild(button);
-
-}
-else{
-  var noDataTr =document.createElement('TR');
-  noDataTr.innerHTML = "No data found";
-  noDataTr.className = "no-data-found";
-moviesTable.tBodies[0].appendChild(noDataTr)
-}
-      
-
-        var buttnNumbers = paginationNumber.getElementsByTagName("button");
-   
-   for (let i = 0; i < buttnNumbers.length; i++) {
-     buttnNumbers[i].addEventListener("click", buttonClick);
-   }
       }
 
       function main(pageNum) {
@@ -204,25 +197,18 @@ moviesTable.tBodies[0].appendChild(noDataTr)
 
         var nextPage = 5 * pageNum;
         var prevPage = 5 * (pageNum - 1);
-       
         for (var i = 0, row; (row = tableContent.rows[i]); i++) {
-         
-          
           tableContent.rows[i].style.display = "none";
           if (i < nextPage && i >= prevPage) {
-            let value = tableContent.rows[i].className;
-            if(value == "no"){
-              
-              tableContent.rows[i].style.display = "none";
-            }
-           else{
             tableContent.rows[i].style.display = "table-row";
-           }
           }
         }
       }
 
-
+      var buttnNumbers = paginationNumber.getElementsByTagName("button");
+      for (let i = 0; i < buttnNumbers.length; i++) {
+        buttnNumbers[i].addEventListener("click", buttonClick);
+      }
 
       function buttonClick() {
         var go = this.innerHTML;
@@ -250,6 +236,7 @@ moviesTable.tBodies[0].appendChild(noDataTr)
           let cells = row.getElementsByTagName("TD");
           for (let cell of cells) {
             if (cell.textContent.toUpperCase().indexOf(filter) > -1) {
+              console.log(filter);
               if (filter) {
                 cell.style.backgroundColor = "yellow";
               } else {
@@ -263,8 +250,9 @@ moviesTable.tBodies[0].appendChild(noDataTr)
           }
 
           if (flag) {
-            count +=1;
+          
             row.setAttribute("class", "yes");
+           // count+=1;
           } else {
             row.setAttribute("class", "no");
           }
@@ -275,13 +263,7 @@ moviesTable.tBodies[0].appendChild(noDataTr)
         let tRow = tableContent.querySelectorAll("[class]");
         var elem = Array.from(tRow).sort(sortMe);
         elem.forEach((el) => {
-          if(el.innerHTML == "No data found"){
-            el.remove();
-          }
-          else{
-            tableContent.appendChild(el);
-          }
-         
+          tableContent.appendChild(el);
         });
         var paginationReset = document.getElementById("cdp");
         paginationReset.setAttribute("actpage", 1);
@@ -290,18 +272,15 @@ moviesTable.tBodies[0].appendChild(noDataTr)
         function sortMe(a, b) {
           return a.className > b.className ? -1 : 1; // This is the added code
         }
-      
         return count;
       }
-      function removePagination(){
-     
-        document.querySelectorAll(".cdp_i").forEach(el => el.remove());
-      }
+
       input.addEventListener("keyup", function (event) {
-        var paginationCount = filterTable();
-     
-        removePagination();
-        createPagination(paginationCount);
+      var PaginationCount = filterTable();
+     // console.log(count)
+       removePagination();
+       createPagination(PaginationCount);
+        //createPagination(tableRow)
       });
     </script>
     <script>
