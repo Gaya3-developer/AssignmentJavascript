@@ -10,3 +10,17 @@ function sumAll(arr) {
   }
   return sum;
 }
+
+
+
+function sumAllArr(arr){
+  var sum = 0;
+  const min = Math.min(...arr)
+  const max = Math.max(...arr)
+
+  for(var i=min; i<=max; i++){
+    sum+=i;
+  }
+  console.log(sum)
+}
+sumAllArr([1, 4]);

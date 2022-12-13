@@ -11,11 +11,12 @@ We'll also pass strings with special symbols, such as 2A3*3a2, 2A3 3a2, and 2_A3
 */
 
 function palindrome(str) {
-  var string = str.toLowerCase().split(/[^A-Za-z0-9]/gi).join('');
-  var aux = string.split('');
-  if (aux.join('') === aux.reverse().join('')){
+  var reversedString = str.toLowerCase().replace(/[^a-z0-9]/gi, '').split('').reverse().join('');
+  console.log(reversedString)
+  if(reversedString == str.toLowerCase().replace(/[^a-z0-9]/gi, '')){
     return true;
   }
-
   return false;
+ 
 }
+console.log(palindrome("eye"));
