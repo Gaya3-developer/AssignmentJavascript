@@ -7,13 +7,13 @@ const countriesContainer = document.querySelector('.countries');
 
 const renderCountry = function(data){
     const html = ` <article class="country">
-    <img class="country__img" src="${data[1].flag}" />
+    <img class="country__img" src="${data.flag}" />
     <div class="country__data">
-      <h3 class="country__name">${data[1].name}</h3>
-      <h4 class="country__region">${data[1].region}</h4>
-      <p class="country__row"><span>👫</span>${+data[1].population} people</p>
-      <p class="country__row"><span>🗣️</span>${data[1].languages[0].name}</p>
-      <p class="country__row"><span>💰</span>${data[1].currencies[0].name}</p>
+      <h3 class="country__name">${data.name}</h3>
+      <h4 class="country__region">${data.region}</h4>
+      <p class="country__row"><span>👫</span>${+data.population} people</p>
+      <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+      <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
     </div>
     </article>`;
     countriesContainer.insertAdjacentHTML('beforeend', html);
@@ -21,7 +21,7 @@ const renderCountry = function(data){
 };
 
 const request1 = new XMLHttpRequest();
-request1.open('GET', 'https://restcountries.com/v2/name/india');
+request1.open('GET', 'https://restcountries.com/v2/alpha/IN');
 request1.send();
 
 request1.addEventListener('load', function(){

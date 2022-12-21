@@ -10,9 +10,7 @@ console.log(arr1);
 arr1.push('Himachal');
 console.log(arr1);
 
-//at -1
 
-console.log(arr1.at(-1));
 
 //searching index of an element
 

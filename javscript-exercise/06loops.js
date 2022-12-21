@@ -52,13 +52,13 @@ function searchFirstOccurenceOf(x){
     for(let i = 0; i<arr3.length; i++){
         if(arr3[i] === x){
             console.log(i);
-            break;
+            //break;
         }
         if(i == arr3.length - 1)
         console.log('not found.');
     }
 }
-
+console.log("First occurance of 6 is found in")
 searchFirstOccurenceOf(6);
 
 
@@ -73,7 +73,8 @@ function displayEven(arr){
     }
 }
 
-displayEven(arr4);
+console.log("even array")
+displayEven(arr4)
 
 
 //for...in iterates over index or property names

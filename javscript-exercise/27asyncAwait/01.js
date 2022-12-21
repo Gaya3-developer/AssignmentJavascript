@@ -1,4 +1,4 @@
-const uno = () => {
+const one = () => {
     return `I'm One.`;
 };
 
@@ -12,7 +12,7 @@ const dos = () => {
     
 };*/
 
-const dos = () => {
+const two = () => {
 
     return new Promise((resolve, reject) => {
         setTimeout( () => {
@@ -23,19 +23,19 @@ const dos = () => {
 
 };
 
-const tres = () => {
+const three = () => {
     return `I'm Three.`;
 };
 
 
 const callMe = async () => {
-    let valOne = uno();
+    let valOne = one();
     console.log(valOne);
 
-    let valTwo = await dos();
+    let valTwo = await two();
     console.log(valTwo);
 
-    let valThree = tres();
+    let valThree = three();
     console.log(valThree);
 };
 

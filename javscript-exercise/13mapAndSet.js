@@ -17,7 +17,7 @@ for(value of myMap.values()){
 
 
 //entries
-for(entry of myMap.entries()){
+for(entry of myMap){
     console.log(entry);
 }
 

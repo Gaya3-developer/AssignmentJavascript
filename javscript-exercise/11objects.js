@@ -31,7 +31,7 @@ console.log(user2.isAdmin.value); //returns undefined since isAdmin is available
 
 //console.log(user2.isAdmin.value.integer); //returns an error because value does not exist
 
-console.log(user2.isAdmin.value?.integer); //evaluation stops immediately since value does not exist and undefined is returned.
+//console.log(user2.isAdmin.value?.integer); //evaluation stops immediately since value does not exist and undefined is returned.
 
 
 
